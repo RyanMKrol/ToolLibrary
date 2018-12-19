@@ -5,6 +5,11 @@ import PackageDescription
 
 let package = Package(
     name: "ToolLibrary",
+    products: [
+        .library(
+            name: "ToolLibrary",
+            targets: ["ToolLibrary"]),
+    ],
     dependencies: [
     ],
     targets: [
