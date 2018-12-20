@@ -14,11 +14,11 @@ public protocol DataHandler {
     var url: URL { get }
     var result: processedData? { get set }
 
-    mutating func parseData(data: Data) throws
+    func parseData(data: Data) throws -> processedData
     func getData() -> processedData?
 }
 
-extension DataHandler {
+public extension DataHandler {
     func getData() -> processedData? {
         return self.result
     }

@@ -9,17 +9,23 @@
 import Foundation
 import SwiftSoup
 
-public protocol PageDataHandler: DataHandler where processedData == Document {
-    func parseHtml(data: processedData) -> Document
+public protocol PageDataHandler: DataHandler {
+    func parseDataInternal(htmlDoc: Document) -> processedData
 }
 
-extension PageDataHandler {
+public extension PageDataHandler {
 
-    func parseData(data: Data) -> processedData {
+    func parseHtml(data: Data) -> Document {
         let pageData = String.init(data: data, encoding: .utf8)!
         let parsedHtml = try! SwiftSoup.parse(pageData)
 
         return parsedHtml
+    }
+
+    func parseData(data: Data) throws -> processedData {
+        return parseDataInternal(
+            htmlDoc: parseHtml(data: data)
+        )
     }
 
 }
