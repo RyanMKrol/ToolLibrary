@@ -19,7 +19,7 @@ public class InteractionHandler {
      - returns: Whatever the callback returns
      - throws: Any exceptions related to gathering and parsing the data
      */
-    private static func fetch<T: DataHandler>(
+    public static func fetch<T: DataHandler>(
         dataHandler: inout T
     ) throws -> T {
 
@@ -29,7 +29,7 @@ public class InteractionHandler {
         InteractionHandler.download(url: dataHandler.url) { (result: Result) in
             switch result {
             case .success(let callbackResult):
-                try? dataContainer.parseData(data: callbackResult)
+                dataContainer.result = try? dataContainer.parseData(data: callbackResult)
             case .failure(let callbackError):
                 error = callbackError
             }
