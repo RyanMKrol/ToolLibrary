@@ -12,7 +12,7 @@ public enum Result<T> {
     case success(T), failure(Error)
 }
 
-extension Result {
+public extension Result {
 
     // Construct a .Success if the expression returns a value or a .Failure if it throws
     init(throwingExpr: () throws -> T) {
