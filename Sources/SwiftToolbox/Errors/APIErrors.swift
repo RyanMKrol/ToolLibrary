@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum APIErrors: Error {
+public enum APIErrors: Error {
     case NoData
 }
