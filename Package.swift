@@ -10,11 +10,12 @@ let package = Package(
             targets: ["SwiftToolbox"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/scinfu/SwiftSoup.git", .upToNextMajor(from: "1.7.4")),
     ],
     targets: [
         .target(
             name: "SwiftToolbox",
-            dependencies: []),
+            dependencies: ["SwiftSoup"]),
         .testTarget(
             name: "SwiftToolboxTests",
             dependencies: ["SwiftToolbox"]),
