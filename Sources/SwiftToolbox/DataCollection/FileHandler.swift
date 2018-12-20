@@ -20,7 +20,7 @@ public class FileHandler {
 
     private static let fileManager = FileManager.default
 
-    public static func fetch(fileLoc: String) throws -> Set<String> {
+    public static func readLines(fileLoc: String) throws -> Set<String> {
 
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
 
@@ -38,7 +38,7 @@ public class FileHandler {
         throw FileErrors.CouldNotRead
     }
 
-    public static func push(urls:String, fileLoc: String) throws {
+    public static func pushString(urls:String, fileLoc: String) throws {
 
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let fileURL = dir.appendingPathComponent(fileLoc)
