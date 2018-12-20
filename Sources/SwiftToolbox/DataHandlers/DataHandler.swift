@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol DataHandler {
+public protocol DataHandler {
     associatedtype processedData
 
     var url: URL { get }

@@ -9,7 +9,7 @@
 import Foundation
 import SwiftSoup
 
-protocol PageDataHandler: DataHandler where processedData == Document {
+public protocol PageDataHandler: DataHandler where processedData == Document {
     func parseHtml(data: processedData) -> Document
 }
 

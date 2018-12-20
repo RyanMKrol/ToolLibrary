@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol APIDataHandler: DataHandler where processedData: Decodable {
+public protocol APIDataHandler: DataHandler where processedData: Decodable {
     func parseCodable(data: Data) -> processedData
 }
 
