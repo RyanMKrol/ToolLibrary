@@ -15,7 +15,7 @@ public protocol PageDataHandler: DataHandler where processedData == Document {
 
 extension PageDataHandler {
 
-    func parseHtml(data: Data) -> processedData {
+    func parseData(data: Data) -> processedData {
         let pageData = String.init(data: data, encoding: .utf8)!
         let parsedHtml = try! SwiftSoup.parse(pageData)
 
