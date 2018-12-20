@@ -1,23 +1,22 @@
 // swift-tools-version:4.2
-// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
-    name: "ToolLibrary",
+    name: "SwiftToolbox",
     products: [
         .library(
-            name: "ToolLibrary",
-            targets: ["ToolLibrary"]),
+            name: "SwiftToolbox",
+            targets: ["SwiftToolbox"]),
     ],
     dependencies: [
     ],
     targets: [
         .target(
-            name: "ToolLibrary",
+            name: "SwiftToolbox",
             dependencies: []),
         .testTarget(
-            name: "ToolLibraryTests",
-            dependencies: ["ToolLibrary"]),
+            name: "SwiftToolboxTests",
+            dependencies: ["SwiftToolbox"]),
     ]
 )

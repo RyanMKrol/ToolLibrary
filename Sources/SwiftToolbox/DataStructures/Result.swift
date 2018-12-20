@@ -1,6 +1,6 @@
 //
 //  Result.swift
-//  ToolLibrary
+//  SwiftToolbox
 //
 //  Created by Ryan Krol on 19/12/2018.
 //
