@@ -21,7 +21,7 @@ public class InteractionHandler {
      */
     public static func fetch<T: DataHandler>(
         dataHandler: inout T
-    ) throws -> T {
+    ) throws {
 
         var dataContainer = dataHandler
         var error: Error? = nil
@@ -39,11 +39,6 @@ public class InteractionHandler {
             throw error
         }
 
-        guard let _ = dataContainer.getData() else {
-            throw APIErrors.NoData
-        }
-
-        return dataContainer
     }
 
     /**

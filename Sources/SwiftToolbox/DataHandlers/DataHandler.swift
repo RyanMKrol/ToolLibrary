@@ -15,11 +15,17 @@ public protocol DataHandler {
     var result: processedData? { get set }
 
     func parseData(data: Data) throws -> processedData
-    func getData() -> processedData?
+    func getData() throws -> processedData
 }
 
 public extension DataHandler {
-    func getData() -> processedData? {
-        return self.result
+
+    func getData() throws -> processedData {
+
+        guard let result = self.result else {
+            throw CommonErrors.NoData
+        }
+
+        return result
     }
 }
