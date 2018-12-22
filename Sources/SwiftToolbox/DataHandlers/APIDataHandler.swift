@@ -15,7 +15,7 @@ public class APIDataHandler<T: Decodable>: DataHandler {
     public var url: URL
     public var result: T?
 
-    init(url: URL) {
+    public init(url: URL) {
         self.url = url
     }
 
