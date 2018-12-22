@@ -11,4 +11,6 @@ import Foundation
 public enum CommonErrors: Error {
     case NoData
     case BadPageData
+    case CouldNotLoadAppConfig
+    case CouldNotLoadEmailConfig
 }
