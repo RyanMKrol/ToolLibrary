@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class InteractionHandler {
+public class InteractionHandler<Resultant> {
 
     /**
      A wrapper for downloading data, and the processing the result
@@ -16,20 +16,20 @@ public class InteractionHandler {
      - parameter processor: The callback to handle the data coming back
      - parameter url: The location of the data we want to grab
 
-     - returns: Whatever the callback returns
+     - returns: The parsed result
      - throws: Any exceptions related to gathering and parsing the data
      */
     public static func fetch<T: DataHandler>(
-        dataHandler: inout T
-    ) throws {
+        dataHandler: T
+    ) throws -> T.processedData {
 
-        var dataContainer = dataHandler
+        var data: Data? = nil
         var error: Error? = nil
 
         InteractionHandler.download(url: dataHandler.url) { (result: Result) in
             switch result {
             case .success(let callbackResult):
-                dataContainer.result = try? dataContainer.parseData(data: callbackResult)
+                data = callbackResult
             case .failure(let callbackError):
                 error = callbackError
             }
@@ -39,6 +39,11 @@ public class InteractionHandler {
             throw error
         }
 
+        guard let concreteData = data else {
+            throw CommonErrors.NoData
+        }
+
+        return try dataHandler.parseData(data: concreteData)
     }
 
     /**

@@ -13,7 +13,6 @@ public class APIDataHandler<T: Decodable>: DataHandler {
     public typealias processedData = T
 
     public var url: URL
-    public var result: T?
 
     public init(url: URL) {
         self.url = url
