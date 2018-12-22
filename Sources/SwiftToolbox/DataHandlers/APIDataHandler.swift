@@ -8,10 +8,18 @@
 
 import Foundation
 
-public protocol APIDataHandler: DataHandler where processedData: Decodable {}
+public class APIDataHandler<T: Decodable>: DataHandler {
 
-public extension APIDataHandler {
-    func parseData(data: Data) throws -> processedData {
+    public typealias processedData = T
+
+    public var url: URL
+    public var result: T?
+
+    init(url: URL) {
+        self.url = url
+    }
+
+    public func parseData(data: Data) throws -> processedData {
         return try JSONDecoder().decode(
             processedData.self,
             from: data
