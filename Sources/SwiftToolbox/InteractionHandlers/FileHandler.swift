@@ -20,6 +20,14 @@ public class FileHandler {
 
     private static let fileManager = FileManager.default
 
+    /**
+     Responsible for reading newline separated strings from a file
+
+     - parameter fileLoc: The location of the file being read
+
+     - returns: A set of newline separated strings
+     - throws: Any exceptions related to reading the file
+     */
     public static func readLines(fileLoc: String) throws -> Set<String> {
 
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
@@ -38,7 +46,15 @@ public class FileHandler {
         throw FileErrors.CouldNotRead
     }
 
-    public static func pushString(urls:String, fileLoc: String) throws {
+    /**
+     Responsible for writing content to a file
+
+     - parameter content: The content being written to the file
+     - parameter fileLoc: The location of the file being written to
+
+     - throws: Any exceptions related to writing to the file
+     */
+    public static func pushString(content:String, fileLoc: String) throws {
 
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let fileURL = dir.appendingPathComponent(fileLoc)
@@ -49,7 +65,7 @@ public class FileHandler {
                 }
             }
             do {
-                try urls.write(to: fileURL, atomically: true, encoding: .utf8)
+                try content.write(to: fileURL, atomically: true, encoding: .utf8)
             }
             catch {
                 throw FileErrors.CouldNotWrite

@@ -14,7 +14,11 @@ public enum Result<T> {
 
 public extension Result {
 
-    // Construct a .Success if the expression returns a value or a .Failure if it throws
+    /**
+     Result initialiser, will create either a failing or successful result
+
+     - parameter throwingExpr: A function to execute that will either return or throw
+     */
     init(throwingExpr: () throws -> T) {
         do {
             let value = try throwingExpr()

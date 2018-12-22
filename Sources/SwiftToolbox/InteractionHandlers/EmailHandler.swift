@@ -14,8 +14,17 @@ public class EmailHandler {
     private let fromEmail: Mail.User
     private let client: SMTP
 
+    /**
+     Email Handler initialiser
+
+     - parameter config: The config to drive setting up an email client
+     */
     public init(config: EmailConfig) {
-        self.fromEmail = Mail.User(name: config.emailName, email: config.emailAccount)
+        self.fromEmail = Mail.User(
+            name: config.emailName,
+            email: config.emailAccount
+        )
+
         self.client = SMTP(
             hostname: config.hostName,
             email: config.emailAccount,
@@ -23,6 +32,15 @@ public class EmailHandler {
         )
     }
 
+    /**
+     Responsible for sending emails
+
+     - parameter coreUser: The main recipient of the email
+     - parameter subject: The subject of the email
+     - parameter emailList: An email list to include in the BCC
+     - parameter content: The string content of the email
+     - parameter imageAttachmentUrls: An array of image URLs to include as attachments
+     */
     public func sendMail(
         coreUser: String,
         subject: String,
@@ -56,12 +74,26 @@ public class EmailHandler {
         waitTask.wait()
     }
 
+    /**
+     Responsible for converting strings to Mail users
+
+     - parameter users: An array of email addresses to create users from
+
+     - returns: An array of mail users
+     */
     private func convertToUsers(_ users: [String]) -> [Mail.User] {
         return users.map{ Mail.User(email: $0) }
     }
 
-    public func createImageAttachments(_ images: [String]) -> [Attachment] {
-        return images.map({
+    /**
+     Responsible for creating image attachments from an array of URLs
+
+     - parameter imageUrls: An array of image URLs to convert to HTML attachments
+
+     - returns: An array of mail attachments
+     */
+    public func createImageAttachments(_ imageUrls: [String]) -> [Attachment] {
+        return imageUrls.map({
             Attachment(htmlContent: "<img src=\"\($0)\"/>")
         })
     }

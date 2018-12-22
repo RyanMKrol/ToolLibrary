@@ -15,6 +15,11 @@ public class ConfigHandler<T: Decodable> {
     private let topLevelConfigKey: String = "config"
     private let configFile: String
 
+    /**
+     Config Handler initialiser
+
+     - parameter configFile: the file to load the config from
+     */
     public init(configFile: String){
         self.configFile = configFile
     }
@@ -23,6 +28,7 @@ public class ConfigHandler<T: Decodable> {
      Loads a config file
 
      - returns: The application configuration
+     - throws: When we fail to load the application file
      */
     public func load() throws -> T {
         let manager = ConfigurationManager().load(file: configFile)

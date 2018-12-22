@@ -13,5 +13,13 @@ public protocol DataHandler {
 
     var url: URL { get }
 
+    /**
+     Responsible for parsing raw data into the data type we want
+
+     - parameter data: The raw data
+
+     - throws: When the data cannot be processed/parsed properly
+     - returns: Data in the final type we want
+     */
     func parseData(data: Data) throws -> processedData
 }

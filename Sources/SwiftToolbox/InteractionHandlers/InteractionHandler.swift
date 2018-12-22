@@ -13,10 +13,9 @@ public class InteractionHandler {
     /**
      A wrapper for downloading data, and the processing the result
 
-     - parameter processor: The callback to handle the data coming back
-     - parameter url: The location of the data we want to grab
+     - parameter dataHandler: Request object that specifies the URL, and response processing
 
-     - returns: The parsed result
+     - returns: The result of the API call, parsed by the dataHandler processor
      - throws: Any exceptions related to gathering and parsing the data
      */
     public static func fetch<T: DataHandler>(
@@ -49,8 +48,8 @@ public class InteractionHandler {
     /**
      Responsible for downloading data
 
-     - parameter completion: The callback to handle the data coming back
      - parameter url: The location of the data we want to grab
+     - parameter completion: The callback to handle the data coming back
      */
     private static func download(
         url: URL,

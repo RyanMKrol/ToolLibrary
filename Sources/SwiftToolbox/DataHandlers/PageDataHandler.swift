@@ -15,6 +15,14 @@ public protocol PageDataHandler: DataHandler {
 
 public extension PageDataHandler {
 
+    /**
+     Responsible for parsing HTML from data representing a DOM
+
+     - parameter data: The page data
+
+     - throws: When the data cannot be parsed into HTML
+     - returns: The HTML document
+     */
     private func parseToHtml(data: Data) throws -> Document {
 
         guard let pageData = String(data: data, encoding: .utf8) else {
@@ -26,6 +34,14 @@ public extension PageDataHandler {
         return parsedHtml
     }
 
+    /**
+     Responsible for parsing the raw response into the data type we want
+
+     - parameter data: The page data
+
+     - throws: When the data cannot be parsed into HTML, or into our target data type
+     - returns: Data in the final response type we want
+     */
     func parseData(data: Data) throws -> processedData {
         return try parseHtml(
             htmlDoc: try parseToHtml(data: data)
