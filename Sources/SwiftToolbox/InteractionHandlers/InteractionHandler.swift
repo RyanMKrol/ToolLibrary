@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class InteractionHandler<Resultant> {
+public class InteractionHandler {
 
     /**
      A wrapper for downloading data, and the processing the result
