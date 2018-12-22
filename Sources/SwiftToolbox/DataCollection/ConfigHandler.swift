@@ -10,7 +10,7 @@ import Foundation
 import Configuration
 import SwiftyJSON
 
-public class ConfigLoader<T: Decodable> {
+public class ConfigHandler<T: Decodable> {
 
     private let topLevelConfigKey: String = "config"
     private let configFile: String
@@ -24,7 +24,7 @@ public class ConfigLoader<T: Decodable> {
 
      - returns: The application configuration
      */
-    public func loadAppConfig() throws -> T {
+    public func load() throws -> T {
         let manager = ConfigurationManager().load(configFile)
 
         guard let appConfig = manager[topLevelConfigKey] else {
