@@ -25,7 +25,7 @@ public class ConfigHandler<T: Decodable> {
      - returns: The application configuration
      */
     public func load() throws -> T {
-        let manager = ConfigurationManager().load(configFile)
+        let manager = ConfigurationManager().load(file: configFile)
 
         guard let appConfig = manager[topLevelConfigKey] else {
             throw CommonErrors.CouldNotLoadAppConfig
