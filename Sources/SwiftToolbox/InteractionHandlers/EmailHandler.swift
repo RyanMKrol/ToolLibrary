@@ -28,7 +28,7 @@ public class EmailHandler {
         subject: String,
         emailList: [String] = [],
         content: String = "",
-        attachments: [Attachment] = []
+        imageAttachmentUrls: [String] = []
     ) {
 
         let waitTask = DispatchSemaphore(value: 0)
@@ -36,12 +36,15 @@ public class EmailHandler {
         let to = convertToUsers([coreUser])
         let bcc = convertToUsers(emailList)
 
+        let attachments = createImageAttachments(imageAttachmentUrls)
+
         let mail = Mail(
             from: self.fromEmail,
             to: to,
             bcc: bcc,
             subject: subject,
-            text: content
+            text: content,
+            attachments: attachments
         )
 
         self.client.send(mail) { (error) in
@@ -55,6 +58,12 @@ public class EmailHandler {
 
     private func convertToUsers(_ users: [String]) -> [Mail.User] {
         return users.map{ Mail.User(email: $0) }
+    }
+
+    public func createImageAttachments(_ images: [String]) -> [Attachment] {
+        return images.map({
+            Attachment(htmlContent: "<img src=\"\($0)\"/>")
+        })
     }
 
 }
