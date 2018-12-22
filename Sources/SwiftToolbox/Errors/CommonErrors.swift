@@ -13,4 +13,5 @@ public enum CommonErrors: Error {
     case BadPageData
     case CouldNotLoadAppConfig
     case CouldNotLoadEmailConfig
+    case CouldNotBuildURL
 }
