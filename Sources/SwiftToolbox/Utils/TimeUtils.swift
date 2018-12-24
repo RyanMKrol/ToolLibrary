@@ -12,7 +12,7 @@ public class TimeUtils {
 
     private init() {}
 
-    public func callWithRetry<T>(
+    public static func callWithRetry<T>(
         retries: Int = 10,
         retryWaitTime: Int,
         function: () throws -> T
