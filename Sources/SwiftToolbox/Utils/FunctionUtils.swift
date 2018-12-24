@@ -1,5 +1,5 @@
 //
-//  TimeUtils.swift
+//  FunctionUtils.swift
 //  SwiftToolbox
 //
 //  Created by Samantha on 24/12/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class TimeUtils {
+public class FunctionUtils {
 
     private init() {}
 
