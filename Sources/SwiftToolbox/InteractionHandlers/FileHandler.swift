@@ -62,9 +62,7 @@ public class FileHandler {
             }
         }
         do {
-            guard let fileUrl = URL(string: fileLoc) else {
-                throw FileErrors.CouldNotWrite
-            }
+            let fileUrl = NSURL.fileURL(withPath: fileLoc)
 
             try content.write(to: fileUrl, atomically: true, encoding: .utf8)
         }
