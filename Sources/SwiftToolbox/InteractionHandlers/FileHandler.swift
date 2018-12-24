@@ -56,20 +56,20 @@ public class FileHandler {
      */
     public static func pushString(content:String, fileLoc: String) throws {
 
-        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let fileURL = dir.appendingPathComponent(fileLoc)
-
-            if (!fileManager.fileExists(atPath:fileURL.path)){
-                if (!fileManager.createFile(atPath: fileURL.path, contents: nil, attributes: nil)){
-                    throw FileErrors.CouldNotCreate
-                }
+        if (!fileManager.fileExists(atPath:fileLoc)){
+            if (!fileManager.createFile(atPath: fileLoc, contents: nil, attributes: nil)){
+                throw FileErrors.CouldNotCreate
             }
-            do {
-                try content.write(to: fileURL, atomically: true, encoding: .utf8)
-            }
-            catch {
+        }
+        do {
+            guard let fileUrl = URL(string: fileLoc) else {
                 throw FileErrors.CouldNotWrite
             }
+
+            try content.write(to: fileUrl, atomically: true, encoding: .utf8)
+        }
+        catch {
+            throw FileErrors.CouldNotWrite
         }
     }
 }
