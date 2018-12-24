@@ -12,14 +12,31 @@ public class TimeUtils {
 
     private init() {}
 
+    /**
+     For use with functions that you expect to fail on occasion. This could be
+     because of API limits when you want the program to continue running.
+
+     - parameter retries: The number of retries the function can go through before stopping
+     - parameter retryWaitTime: The time the function will wait before trying again
+     - parameter function: The function to call a number of times
+
+     - returns: The result of the function we're calling
+     - throws: When the function fails to complete after retrying a number of times
+
+     - note: Only for use with time insensitive systems, this will make everything slow
+             right down
+     - warning: Not for use on functions you don't expect to fail. If you send a malformed
+             request to this function, it will retry on any throwing result, not specifically
+             for timeouts, meaning your faiing function will take much longer to finish.
+    */
     public static func callWithRetry<T>(
         retries: Int = 10,
-        retryWaitTime: Int,
+        retryWaitTime: Int = 5,
         function: () throws -> T
-    ) -> T? {
+    ) throws -> T {
 
         if retries == 0 {
-            return nil
+            throw CommonErrors.CouldNotResolveFunction
         }
 
         do {
@@ -27,7 +44,7 @@ public class TimeUtils {
         } catch {
             sleep(UInt32(retryWaitTime))
 
-            return callWithRetry(
+            return try callWithRetry(
                 retries: retries - 1,
                 retryWaitTime: retryWaitTime,
                 function: function

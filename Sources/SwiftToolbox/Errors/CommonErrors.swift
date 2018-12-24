@@ -14,4 +14,5 @@ public enum CommonErrors: Error {
     case CouldNotLoadAppConfig
     case CouldNotLoadEmailConfig
     case CouldNotBuildURL
+    case CouldNotResolveFunction
 }
