@@ -70,5 +70,16 @@ public class FileHandler {
             throw FileErrors.CouldNotWrite
         }
     }
+
+    /**
+     Responsible for checking if a file exists
+
+     - parameter fileLoc: The location of the file
+
+     - returns: Whether the file exists
+     */
+    public static func fileExists(fileLoc: String) -> Bool {
+        return fileManager.fileExists(atPath:fileLoc)
+    }
 }
 
