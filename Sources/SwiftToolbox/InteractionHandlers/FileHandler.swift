@@ -30,20 +30,16 @@ public class FileHandler {
      */
     public static func readLines(fileLoc: String) throws -> Set<String> {
 
-        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+        let fileUrl = NSURL.fileURL(withPath: fileLoc)
 
-            let fileURL = dir.appendingPathComponent(fileLoc)
-            do {
-                let savedLinks = try String(contentsOf: fileURL, encoding: .utf8)
-                let urls = savedLinks.split(separator: "\n")
+        do {
+            let savedLinks = try String(contentsOf: fileUrl, encoding: .utf8)
+            let urls = savedLinks.split(separator: "\n")
 
-                return Set<String>(urls.map {String($0)})
-            } catch {
-                throw FileErrors.CouldNotRead
-            }
+            return Set<String>(urls.map {String($0)})
+        } catch {
+            throw FileErrors.CouldNotRead
         }
-
-        throw FileErrors.CouldNotRead
     }
 
     /**
