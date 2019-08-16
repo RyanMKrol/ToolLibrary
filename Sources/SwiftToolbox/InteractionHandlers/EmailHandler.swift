@@ -7,7 +7,10 @@
 //  TV: Peep Show - Season 4 - Episode 1
 
 import Foundation
-import SwiftSMTP
+
+import struct SwiftSMTP.SMTP
+import struct SwiftSMTP.Mail
+import struct SwiftSMTP.Attachment
 
 public class EmailHandler {
 
@@ -50,7 +53,6 @@ public class EmailHandler {
     ) {
 
         let waitTask = DispatchSemaphore(value: 0)
-
         let to = convertToUsers([coreUser])
         let bcc = convertToUsers(emailList)
 

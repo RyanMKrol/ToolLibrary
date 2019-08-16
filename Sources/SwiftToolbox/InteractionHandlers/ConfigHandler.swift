@@ -7,8 +7,9 @@
 //  Song: STARGAZING - Travis Scott
 
 import Foundation
-import Configuration
-import SwiftyJSON
+
+import class Configuration.ConfigurationManager
+import struct SwiftyJSON.JSON
 
 public class ConfigHandler<T: Decodable> {
 

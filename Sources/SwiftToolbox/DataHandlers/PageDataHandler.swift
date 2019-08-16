@@ -7,7 +7,9 @@
 //  TV: Peep Show - Season 3 - Episode 1
 
 import Foundation
-import SwiftSoup
+
+import class SwiftSoup.Document
+import func SwiftSoup.parse
 
 public protocol PageDataHandler: DataHandler {
     func parseHtml(htmlDoc: Document) throws -> processedData
