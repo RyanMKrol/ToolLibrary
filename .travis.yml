@@ -1,4 +1,12 @@
-os: osx
 language: swift
+os: osx
+osx_image: xcode10.3
+before_script:
+- swift package generate-xcodeproj
+xcode_project: SwiftToolbox.xcodeproj
+xcode_scheme: SwiftToolboxTests
+xcode_destination: platform=macOS
+
+
 
 
