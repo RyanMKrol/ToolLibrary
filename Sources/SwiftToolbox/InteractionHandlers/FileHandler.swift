@@ -30,10 +30,10 @@ public class FileHandler {
      */
     public static func readLines(fileLoc: String) throws -> Set<String> {
 
-        let fileUrl = NSURL.fileURL(withPath: fileLoc)
+        let fileUrl = NSURL.fileURL(withPathComponents: [fileLoc])
 
         do {
-            let savedLinks = try String(contentsOf: fileUrl, encoding: .utf8)
+            let savedLinks = try String(contentsOf: fileUrl!, encoding: .utf8)
             let urls = savedLinks.split(separator: "\n")
 
             return Set<String>(urls.map {String($0)})
