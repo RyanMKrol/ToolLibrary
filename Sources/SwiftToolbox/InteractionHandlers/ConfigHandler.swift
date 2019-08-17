@@ -15,14 +15,16 @@ public class ConfigHandler<T: Decodable> {
 
     private let topLevelConfigKey: String = "config"
     private let configFile: String
+    private let relativeFrom: String?
 
     /**
      Config Handler initialiser
 
      - parameter configFile: the file to load the config from
      */
-    public init(configFile: String){
+    public init(configFile: String, relativeFrom: String?){
         self.configFile = configFile
+        self.relativeFrom = relativeFrom
     }
 
     /**
@@ -32,7 +34,10 @@ public class ConfigHandler<T: Decodable> {
      - throws: When we fail to load the application file
      */
     public func load() throws -> T {
-        let manager = ConfigurationManager().load(file: configFile)
+        let manager = self.relativeFrom != nil
+            ? ConfigurationManager().load(file: configFile, relativeFrom: .customPath(self.relativeFrom!))
+            : ConfigurationManager().load(file: configFile)
+
 
         guard let appConfig = manager[topLevelConfigKey] else {
             throw CommonErrors.CouldNotLoadAppConfig
