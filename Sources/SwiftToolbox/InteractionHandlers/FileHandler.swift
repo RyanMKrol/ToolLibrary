@@ -30,6 +30,9 @@ public class FileHandler {
      */
     public static func readLines(fileLoc: String) throws -> Set<String> {
 
+        // this was changed to accommodate docker build execution
+        // used to be:
+        // let fileUrl = NSURL.fileURL(withPath: fileLoc)
         let fileUrl = NSURL.fileURL(withPathComponents: [fileLoc])
 
         do {
@@ -58,9 +61,12 @@ public class FileHandler {
             }
         }
         do {
-            let fileUrl = NSURL.fileURL(withPath: fileLoc)
+            // this was changed to accommodate docker build execution
+            // used to be:
+            // let fileUrl = NSURL.fileURL(withPath: fileLoc)
+            let fileUrl = NSURL.fileURL(withPathComponents: [fileLoc])
 
-            try content.write(to: fileUrl, atomically: true, encoding: .utf8)
+            try content.write(to: fileUrl!, atomically: true, encoding: .utf8)
         }
         catch {
             throw FileErrors.CouldNotWrite
