@@ -22,7 +22,7 @@ public class ConfigHandler<T: Decodable> {
 
      - parameter configFile: the file to load the config from
      */
-    public init(configFile: String, relativeFrom: String?){
+    public init(configFile: String, relativeFrom: String? = nil){
         self.configFile = configFile
         self.relativeFrom = relativeFrom
     }
